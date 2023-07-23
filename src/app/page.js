@@ -15,10 +15,13 @@ export default function Main() {
     if (formSubmitted) {
       if (nameRef.current.trim() === "") {
         alert('Please enter a song name!');
+        setFormSubmitted(false);
       } else if (artistRef.current.trim() === "") {
         router.push(`/noArtist/${nameRef.current}`);
+        setFormSubmitted(false); 
       } else {
         router.push(`/${artistRef.current}/${nameRef.current}`);
+        setFormSubmitted(false); 
       }
     }
   }, [formSubmitted, router]);
@@ -50,8 +53,8 @@ export default function Main() {
       <br />
       <form onSubmit={submitForm}>
         <div className="justify-center" id="input">
-          <input
-            style={{ width: "900px" }}
+          <input id="yes"
+            autoComplete="off"
             className="rounded-2xl border-2 p-2 text-xl bg-black/60"
             onChange={(e) => artistRef.current = e.target.value}
             placeholder="Enter artist name (leave blank if unknown)"
@@ -59,7 +62,8 @@ export default function Main() {
         </div><br></br>
         <div className="justify-center" id="input" style={{ display: "flex" }}>
           <input
-            style={{ width: "900px" }}
+          id="yes"
+          autoComplete="off"
             className="w-fit rounded-2xl border-2 p-2 text-xl bg-black/60"
             onChange={(e) => nameRef.current = e.target.value}
             placeholder="Enter song name"
