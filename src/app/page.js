@@ -46,7 +46,7 @@ export default function Main() {
       }}
       id="main"
     >
-      <h1 style={{ fontSize: "30px" }}>ayakaa</h1>
+      <h1 style={{ fontSize: "40px" }}>ayakaa</h1>
       <h1 style={{ fontSize: "20px" }}>
         browse through music lyrics, without any ads!
       </h1>

@@ -27,7 +27,7 @@ export default function Main({params}) {
         maxWidth: '600px',
         margin: '0 auto',
         padding: '20px',
-        backgroundColor: '#70707080',
+        backgroundColor: '#00000080',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         display: 'flex',
         flexDirection: 'column',
@@ -42,7 +42,7 @@ export default function Main({params}) {
             src={song.albumArt}
             alt="Album Art"
             style={{
-              maxWidth: '200px',
+              maxWidth: '250px',
               borderRadius: '4px',
               boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)',
                margin: '0 auto',
@@ -52,7 +52,7 @@ export default function Main({params}) {
         </div>
       ))}
       {getLyrics(options).then((lyrics) => (
-        <pre     className={sansjp.className}   style={{textAlign: 'center', whiteSpace: 'pre-wrap', fontSize: '18px', lineHeight: '1.5' }}>{lyrics}</pre>
+        <pre className={sansjp.className}  style={{textAlign: 'center', whiteSpace: 'pre-wrap', fontSize: '18px', lineHeight: '1.5' }}>{lyrics}</pre>
       ))}
     </div></div>
   );
