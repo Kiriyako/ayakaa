@@ -1,36 +1,25 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react"; 
+import React, { useState } from "react"; 
 import { Maven_Pro } from "next/font/google";
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
 const maven = Maven_Pro({ subsets: ["latin"], weight: ["400"] });
 
 export default function Main() {
-  const artistRef = useRef("");
-  const nameRef = useRef("");
-  const router = useRouter();
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  useEffect(() => {
-    if (formSubmitted) {
-      if (nameRef.current.trim() === "") {
-        alert('Please enter a song name!');
-        setFormSubmitted(false);
-      } else if (artistRef.current.trim() === "") {
-        router.push(`/noArtist/${nameRef.current}`);
-        setFormSubmitted(false); 
-      } else {
-        router.push(`/${artistRef.current}/${nameRef.current}`);
-        setFormSubmitted(false); 
-      }
-    }
-  }, [formSubmitted, router]);
+const [song, setSong] = useState('')
+const [submitSong, setSubmitSong] = useState('')
+const router = useRouter();
 
   function submitForm(e) {
     e.preventDefault();
-    setFormSubmitted(true);
-  }
+    setSubmitSong(song)
+router.push(`/results/${song}`)  
+}
 
+  function yes(e){
+    var a = e.target.value
+    setSong(a)
+  }
   return (
     <div
       className={maven.className}
@@ -51,27 +40,20 @@ export default function Main() {
         browse through music lyrics, without any ads!
       </h1>
       <h1 style={{ fontSize: "20px" }}>
-       <Link href = "/search">want to get multiple results?</Link>  
+      <Link href = "/">want to search by song and artist name?</Link>  
       </h1>
       <br />
       <form onSubmit={submitForm}>
-        <div className="justify-center" id="input">
-          <input id="yes"
-            autoComplete="off"
-            className="rounded-2xl border-2 p-2 text-xl bg-black/60"
-            onChange={(e) => artistRef.current = e.target.value}
-            placeholder="Enter artist name (leave blank if unknown)"
-          />
-        </div><br></br>
         <div className="justify-center" id="input" style={{ display: "flex" }}>
           <input
           id="yes"
           autoComplete="off"
             className="w-fit rounded-2xl border-2 p-2 text-xl bg-black/60"
-            onChange={(e) => nameRef.current = e.target.value}
+            onChange={yes}
             placeholder="Enter song name"
           />
           <button
+          onClick={submitForm}
             className="ml-2 align-middle border-2 rounded-3xl text-xl h-10 w-10 p-2 bg-black/60 hover:bg-black/20"
             type="submit"
           >

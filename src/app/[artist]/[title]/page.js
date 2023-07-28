@@ -3,7 +3,6 @@ import { Maven_Pro } from 'next/font/google'
 import { Noto_Sans_JP } from 'next/font/google';
 const maven = Maven_Pro({subsets: ['latin'], weight: ['400']}) 
 const sansjp = Noto_Sans_JP({subsets: ['latin'], weight: ['600']}) 
-
 export default function Main({params}) {
     let artist;
     if (params.artist === 'noArtist') {
@@ -48,11 +47,11 @@ export default function Main({params}) {
                margin: '0 auto',
             }}
           />
-          <p style={{ fontSize: '18px' }}>{song.title}</p>
+          <p style={{ fontSize: '25px' }}>{song.title}</p>
         </div>
       ))}
       {getLyrics(options).then((lyrics) => (
-        <pre className={sansjp.className}  style={{textAlign: 'center', whiteSpace: 'pre-wrap', fontSize: '18px', lineHeight: '1.5' }}>{lyrics}</pre>
+        <pre className={sansjp.className}  style={{textAlign: 'center', whiteSpace: 'pre-wrap', fontSize: '23px', lineHeight: '1.5' }}>{lyrics}</pre>
       ))}
     </div></div>
   );
