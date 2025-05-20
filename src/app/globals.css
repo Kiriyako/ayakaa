@@ -10,6 +10,7 @@ body {
   padding: 10px;
 }
 
+
 @layer utilities {
   ::-webkit-scrollbar {
     width: 8px;
