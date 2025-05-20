@@ -1,20 +1,17 @@
-
-
 import { Client } from 'genius-lyrics';
 import { Maven_Pro } from 'next/font/google';
 import { Noto_Sans_JP } from 'next/font/google';
-
+export const runtime = 'nodejs';
 const maven = Maven_Pro({ subsets: ['latin'], weight: ['400'] });
 const sansjp = Noto_Sans_JP({ subsets: ['latin'], weight: ['600'] });
 
 // Utility to clean up lyrics
 function cleanLyrics(rawLyrics) {
 
-  // Fallback: strip typical headers like "***4 Contributors***"
   return rawLyrics
-    .replace(/^\*{3}.*?\*{3}/gs, '') // Remove any "***...***" blocks
-    .replace(/Translations.*?\n/gi, '') // Remove lines starting with "Translations"
-    .replace(/\[.*?歌詞.*?\]/gi, '') // Remove "[ナナヲアカリ「ワンルームシュガーライフ」歌詞]" type headers
+    .replace(/^\*{3}.*?\*{3}/gs, '') 
+    .replace(/Translations.*?\n/gi, '') 
+    .replace(/\[.*?歌詞.*?\]/gi, '') 
     .trim();
 }
 
@@ -23,7 +20,7 @@ export default async function Main({ params }) {
   const artist = params.artist === 'noArtist' ? '' : decodeURIComponent(params.artist);
   const title = decodeURIComponent(params.title);
 
-  const Genius = new Client('4D-pz_Kz7UX_3scJ01mt7oiZ5wQYULf_cNZ5tqIWKyYIHpwnp1l2WWw7KVD9C1Up'); // Replace with your actual key
+  const Genius = new Client('4D-pz_Kz7UX_3scJ01mt7oiZ5wQYULf_cNZ5tqIWKyYIHpwnp1l2WWw7KVD9C1Up'); 
 
   let song, lyrics;
   try {
