@@ -1,7 +1,7 @@
+export const runtime = 'nodejs';
 import { Client } from 'genius-lyrics';
 import { Maven_Pro } from 'next/font/google';
 import { Noto_Sans_JP } from 'next/font/google';
-export const runtime = 'nodejs';
 const maven = Maven_Pro({ subsets: ['latin'], weight: ['400'] });
 const sansjp = Noto_Sans_JP({ subsets: ['latin'], weight: ['600'] });
 
@@ -32,9 +32,16 @@ console.log('Fetched song:', song);
 console.log('Lyrics:', lyrics);
 
   } catch (error) {
-    console.error('Error fetching song or lyrics:', error);
+  // Vercel will capture console.error and show it under “Logs”
+  console.error('💥 Genius fetch error:', error.stack || error);
+  // For staging you might return the raw error so you can see it in-browser:
+  if (process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_ERRORS === '1') {
+    lyrics = `Error: ${error.message}`;
+  } else {
     lyrics = 'Lyrics not found.';
   }
+}
+
 
   return (
     <div id="content">
